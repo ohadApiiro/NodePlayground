@@ -12,7 +12,7 @@ app.listen(port, () => {
 })
 
 function foo() {
-    let data = new Data('Kung', 'Fury', 'kungfury@fury.com', '6666666', '1666');
+    let data = new AccountUserResponse('Kung', 'Fury', 'kungfury@fury.com', '6666666', '1666');
     console.log(`${data.firstName} ${data.lastName}`)
     return data;
 }
