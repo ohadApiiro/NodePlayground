@@ -3,8 +3,8 @@ const app = express()
 const port = 3000
 
 app.get('/', (req, res) => {
-    foo();
-    res.send('Hello World!')
+    let data = foo();
+    res.send(`hello ${data.firstName} ${data.lastName}`)
 })
 
 app.listen(port, () => {
@@ -25,5 +25,9 @@ class AccountUserResponse {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.userId = userId;
+    }
+
+    getFullName() {
+        return this.firstName + ' ' + this.lastName;
     }
 }
