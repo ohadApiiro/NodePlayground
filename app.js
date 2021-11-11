@@ -1,9 +1,11 @@
 const express = require('express')
+const User = require('./user.schema');
+
 const app = express()
 const port = 3000
 
 app.get('/', (req, res) => {
-    let data = foo();
+    let data = foo(req);
     res.send(`hello ${data.firstName} ${data.lastName}`)
 })
 
@@ -11,10 +13,17 @@ app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 })
 
-function foo() {
-    let data = new AccountUserResponse('Kung', 'Fury', 'kungfury@fury.com', '6666666', '1666');
-    console.log(`${data.firstName} ${data.lastName}`)
-    return data;
+function foo(req) {
+
+    let user = new User();
+
+    user.username = req.body.username;
+    user.email = req.body.email;
+    user.password = user.setPassword(req.body.password);
+    
+    console.log(`password => ${req.body.password}`);
+    console.log("user =>",user);
+    user.save()
 }
 
 // pii
