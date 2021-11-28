@@ -15,6 +15,8 @@ app.listen(port, () => {
 
 function foo(req) {
 
+    let ur = new AccountUserResponse("Jimi", "Hendrix", "j@666.com", "0666", "id");
+    console.log(ur.firstName);
     let user = new User();
 
     user.username = req.body.username;
@@ -24,6 +26,7 @@ function foo(req) {
     console.log(`password => ${req.body.password}`);
     console.log("user =>",user);
     user.save()
+    return ur;
 }
 
 // pii
