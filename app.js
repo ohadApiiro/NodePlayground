@@ -9,16 +9,28 @@ app.get('/', (req, res) => {
     res.send(`hello ${data.firstName} ${data.lastName}`)
 })
 
+app.post('/account', (req, res) => {
+    let account = bar()
+    res.send(`${account.lastName}`)
+})
+
+function bar(req) {
+    let account = new AccountUserResponse(
+        "Jimi",
+        "Hendrix",
+        "j@666.com",
+        "0666",
+        req.body.id
+    );
+    return account;
+}
+
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 })
 
 function foo(req) {
-
-    let ur = new AccountUserResponse("Jimi", "Hendrix", "j@666.com", "0666", "id");
-    console.log(ur.firstName);
     let user = new User();
-
     user.username = req.body.username;
     user.email = req.body.email;
     user.password = user.setPassword(req.body.password);
@@ -26,7 +38,7 @@ function foo(req) {
     console.log(`password => ${req.body.password}`);
     console.log("user =>",user);
     user.save()
-    return ur;
+    return user;
 }
 
 // pii
